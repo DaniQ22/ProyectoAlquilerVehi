@@ -20,7 +20,10 @@ public class Registro extends javax.swing.JFrame {
     }
 
     Cliente cli = new Cliente();
-    int cont = 0;
+    int cont = 0;  /* Aquí no es necesario usar contadores dado que los tamaños de los arreglos están predefinidos y no creados por el usuario
+    en la clase principal te darás cuenta que ta tienen tamamños de 100, 50, que es la capacidad el negocio y que al ir insertando empieza
+    por la posici+on cero inicializada */
+    /* también te recuereo que al tratarse de vectores de objetos debes hcaer instancias de ellos en los botones */
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

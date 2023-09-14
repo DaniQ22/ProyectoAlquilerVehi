@@ -17,9 +17,10 @@ public class Calquiler {
    private int totalDiasalquilado;
    
    
-   public Calquiler(){
+   public Calquiler(){                    /*    Debes recibir por parámetros aquí    */
        this.cliente = new Cclientes();
-       this.vehiculo = new Cvehiculo();
+       this.vehiculo = new Cvehiculo();   /* Cuando recibes un valor pro parámetro a través del constructor significa que ya esos valores están definidos antes
+       de crear la instancia de la clase en cuestión entonces no es necesario incializar en 0, null o "" */
        this.añoAlquiler = 0;
        this.diaAlquiler = 0;
        this.totalDiasalquilado = 0;
