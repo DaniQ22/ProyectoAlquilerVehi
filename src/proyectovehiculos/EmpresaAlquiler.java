@@ -13,37 +13,33 @@ public class EmpresaAlquiler {
     private String cif;
     private String pagina;
     private String nombre;
-    private Cclientes cliente[];
+    private Cclientes[] clientes;
     private int totalcliente;
-    private Cvehiculo vehiculo[];
+    private Cvehiculo[] vehiculos;
     private int totalvehiculo;
-    private Calquiler alquileres[];
+    private Calquiler[] alquileres;
     private int totalalquileres;
 
     public EmpresaAlquiler(String cif, String pagina, String nombre) {
         this.cif = cif;
         this.nombre = nombre;
         this.pagina = pagina;
-        this.cliente = new Cclientes[50];
+        this.clientes = new Cclientes[50];
         this.totalcliente = 0;
-        this.vehiculo = new Cvehiculo[50];
+        this.vehiculos = new Cvehiculo[50];
         this.totalvehiculo = 0;
         this.alquileres = new Calquiler[100];
         this.totalalquileres = 0;
 
     }
 
-    public Cclientes[] getCliente(String nif) {
-        for (int i = 0; i < this.totalcliente; i++) {
-            if (this.cliente[i].getNif().equals(nif)) {
-                return cliente;
-            }
-        }
-        return null;
+    public Cclientes[] getClientes() {
+        return clientes;
+
     }
 
-    public void setCliente(Cclientes[] cliente) {
-        this.cliente = cliente;
+    public void setClientes(Cclientes cliente) {
+        this.clientes[this.totalcliente] = cliente;
     }
 
     public int getTotalcliente() {
@@ -54,14 +50,14 @@ public class EmpresaAlquiler {
         this.totalcliente = totalcliente;
     }
 
-    public Cvehiculo[] getVehiculo() {
+    public Cvehiculo[] getVehiculos() {
 
-        return vehiculo;
+        return vehiculos;
 
     }
 
-    public void setVehiculo(Cvehiculo[] vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setVehiculos(Cvehiculo vehiculo) {
+        this.vehiculos[this.totalvehiculo] = vehiculo;
     }
 
     public int getTotalvehiculo() {
@@ -112,22 +108,21 @@ public class EmpresaAlquiler {
         this.nombre = nombre;
     }
 
-    public void registrarCliente(Cclientes cliente) {
+    /*public void registrarCliente(Cclientes cliente) {
         this.cliente[this.totalcliente] = cliente;
         this.totalcliente++;
-    }
+    }*/
 
-    public void registrarVehiculo(Cvehiculo vehiculo) {
+ /*public void registrarVehiculo(Cvehiculo vehiculo) {
         this.vehiculo[this.totalvehiculo] = vehiculo;
         this.totalvehiculo++;
-    }
-
+    }*/
     public String mostrarCliente() {
         String list = "";
         for (int i = 0; this.totalcliente < 10; i++) {
-            list = "Nif Cliente: " + this.cliente[i].getNif() + " \n"
-                    + "Nombre del Cliente: " + this.cliente[i].getNombre() + "\n"
-                    + "Apellidos del cliente: " + this.cliente[i].getApellido();
+            list = "Nif Cliente: " + this.clientes[i].getNif() + " \n"
+                    + "Nombre del Cliente: " + this.clientes[i].getNombre() + "\n"
+                    + "Apellidos del cliente: " + this.clientes[i].getApellido();
 
         }
         return list;
@@ -136,26 +131,23 @@ public class EmpresaAlquiler {
     public String mostrarVehiculos() {
         String list = "";
         for (int i = 0; i < this.getTotalvehiculo(); i++) {
-            list = "Matricula del vehiculo; " + this.vehiculo[i].getMatricula() + "\n"
-                    + "Modelo del vehiculo" + this.vehiculo[i].getModelo() + "\n"
-                    + "Tarifa del Vehiculo" + this.vehiculo[i].getTarifa() + "\n"
-                    + "Disponobilidad del Vehiculo:" + this.vehiculo[i].getDisponible();
+            list = "Matricula del vehiculo; " + this.vehiculos[i].getMatricula() + "\n"
+                    + "Modelo del vehiculo" + this.vehiculos[i].getModelo() + "\n"
+                    + "Tarifa del Vehiculo" + this.vehiculos[i].getTarifa() + "\n"
+                    + "Disponobilidad del Vehiculo:" + this.vehiculos[i].getDisponible();
         }
         return list;
     }
 
     public void alquilarVehiculo(String matricula, String nif, int dias) {
-        Cclientes clie = this.buscarcli(nif);
-        Cvehiculo veh = this.buscarvehiculo(matricula);
+        Cclientes cliente = this.buscarcli(nif);
+        Cvehiculo vehiculo = this.buscarvehiculo(matricula);
         dias = 0;
-        for (int i = 0; i < this.totalvehiculo; i++) {
-            if (veh.getDisponible()) {
-                veh.setDisponible(false);
-                
-                alquileres[this.totalalquileres] = new Calquiler (clie, veh, dias);
-                this.totalalquileres++;
+        if (vehiculo.getDisponible()) {
+            vehiculo.setDisponible(false);
 
-            }
+            this.alquileres[this.totalalquileres] = new Calquiler(cliente, vehiculo, dias);
+            this.totalalquileres++;
 
         }
 
@@ -163,8 +155,8 @@ public class EmpresaAlquiler {
 
     public Cclientes buscarcli(String nif) {
         for (int i = 0; i < this.totalcliente; i++) {
-            if (this.cliente[i].getNif().equals(nif)) {
-                return this.cliente[i];
+            if (this.clientes[i].getNif().equals(nif)) {
+                return this.clientes[i];
             }
 
         }
@@ -173,8 +165,8 @@ public class EmpresaAlquiler {
 
     public Cvehiculo buscarvehiculo(String matricula) {
         for (int i = 0; i < this.totalvehiculo; i++) {
-            if (this.vehiculo[i].getMatricula().equals(matricula)) {
-                return this.vehiculo[i];
+            if (this.vehiculos[i].getMatricula().equals(matricula)) {
+                return this.vehiculos[i];
             }
         }
         return null;

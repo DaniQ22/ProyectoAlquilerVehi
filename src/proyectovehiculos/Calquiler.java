@@ -18,8 +18,6 @@ public class Calquiler {
    
    
    public Calquiler(){
-       this.cliente = new Cclientes();
-       this.vehiculo = new Cvehiculo();
        this.añoAlquiler = 0;
        this.diaAlquiler = 0;
        this.totalDiasalquilado = 0;
