@@ -23,6 +23,7 @@ public class Cvehiculo {
         marca = "";
         color = "";
         tarifa = 0;
+        disponible = true;
         
     }
 

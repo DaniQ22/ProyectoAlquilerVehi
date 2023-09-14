@@ -17,10 +17,14 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
+        
+        
     }
+    
+    EmpresaAlquiler easydrive = new EmpresaAlquiler ("A-20-2022", "Easy Drive", "www.EasyDrive.com");
 
-    Cliente cli = new Cliente();
-    int cont = 0;  /* Aquí no es necesario usar contadores dado que los tamaños de los arreglos están predefinidos y no creados por el usuario
+  
+    /* Aquí no es necesario usar contadores dado que los tamaños de los arreglos están predefinidos y no creados por el usuario
     en la clase principal te darás cuenta que ta tienen tamamños de 100, 50, que es la capacidad el negocio y que al ir insertando empieza
     por la posici+on cero inicializada */
     /* también te recuereo que al tratarse de vectores de objetos debes hcaer instancias de ellos en los botones */
@@ -29,6 +33,8 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        PantallaVehiculo = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -54,9 +60,25 @@ public class Registro extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        NCli = new javax.swing.JTextField();
+        Mvehi = new javax.swing.JTextField();
+        Dalqui = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PantallaCliente = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        PantallaAlquiler = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        PantallaVehi = new javax.swing.JTextArea();
+
+        PantallaVehiculo.setColumns(20);
+        PantallaVehiculo.setRows(5);
+        jScrollPane2.setViewportView(PantallaVehiculo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,6 +205,11 @@ public class Registro extends javax.swing.JFrame {
         });
 
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -247,7 +274,24 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel3.setText("Registrar Alquiler");
 
-        jLabel12.setText("Cliente");
+        jLabel12.setText("Nif Cliente");
+
+        jLabel13.setText("Matricula Vehiculo");
+
+        jLabel14.setText("Dias Alquilado");
+
+        Mvehi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MvehiActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Registrar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -258,8 +302,27 @@ public class Registro extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(75, 75, 75))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel12))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel14))
+                                    .addComponent(jLabel13))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Mvehi, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                            .addComponent(Dalqui)
+                            .addComponent(NCli)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jButton5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -268,7 +331,19 @@ public class Registro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(NCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(Mvehi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(Dalqui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -276,12 +351,34 @@ public class Registro extends javax.swing.JFrame {
         PantallaCliente.setRows(5);
         jScrollPane1.setViewportView(PantallaCliente);
 
-        jButton3.setText("Mostrar Clientes");
+        jButton3.setText("Mostrar Vehiculo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jButton4.setText("Mostrar Clientes");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Mostrar Registros");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        PantallaAlquiler.setColumns(20);
+        PantallaAlquiler.setRows(5);
+        jScrollPane3.setViewportView(PantallaAlquiler);
+
+        PantallaVehi.setColumns(20);
+        PantallaVehi.setRows(5);
+        jScrollPane4.setViewportView(PantallaVehi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,17 +388,26 @@ public class Registro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane4)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton3)))
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton4)
+                        .addGap(176, 176, 176)
+                        .addComponent(jButton3)
+                        .addGap(165, 165, 165)
+                        .addComponent(jButton6)))
                 .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -311,10 +417,16 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3)
+                    .addComponent(jButton6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane4))
                 .addGap(0, 137, Short.MAX_VALUE))
         );
 
@@ -347,12 +459,12 @@ public class Registro extends javax.swing.JFrame {
         String apelli = CajaApellido.getText();
         clie.setApellido(apelli);
         this.CajaApellido.setText("");
-
-        cli.setCclientes(cont, clie);
-        this.cont++;
+        
+        easydrive.registrarCliente(clie);
 
         JOptionPane.showMessageDialog(null, "El Cliente se ha registrado correctamente");
 
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -373,8 +485,66 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_MarcaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.PantallaCliente.setText("" + cli.MostrarVector());
+        this.PantallaVehi.setText("" + easydrive.mostrarVehiculos());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Cvehiculo vehi = new Cvehiculo();
+        
+        String matri = Matricula.getText();
+        vehi.setMatricula(matri);
+        this.Matricula.setText("");
+        
+        String mode = Modelo.getText();
+        vehi.setModelo(mode);
+        this.Modelo.setText(""); 
+        
+        String co = Color.getText();
+        vehi.setColor(co);
+        this.Color.setText("");
+        
+        String marc = Marca.getText();
+        vehi.setMarca(marc);
+        this.Marca.setText("");
+        
+        double tarif = Integer.parseInt(Tarifa.getText());
+        vehi.setTarifa(tarif);
+        this.Tarifa.setText("");
+        
+        easydrive.setVehiculos(vehi);
+        JOptionPane.showMessageDialog(null, "El vehiculo ha sido registrado correctamente");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        this.PantallaCliente.setText(""+easydrive.mostrarCliente());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void MvehiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MvehiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MvehiActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.PantallaAlquiler.setText(""+easydrive.mostrarAlquiler());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+     
+        
+        String ni = this.NCli.getText();
+        
+        
+        
+        String ma = this.Mvehi.getText();
+       
+        
+        int di = Integer.parseInt(this.Dalqui.getText());
+        
+        easydrive.alquilarVehiculo(ma, ni, di);
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,18 +586,29 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField CajaNif;
     private javax.swing.JTextField CajaNombre;
     private javax.swing.JTextField Color;
+    private javax.swing.JTextField Dalqui;
     private javax.swing.JTextField Marca;
     private javax.swing.JTextField Matricula;
     private javax.swing.JTextField Modelo;
+    private javax.swing.JTextField Mvehi;
+    private javax.swing.JTextField NCli;
+    private javax.swing.JTextArea PantallaAlquiler;
     private javax.swing.JTextArea PantallaCliente;
+    private javax.swing.JTextArea PantallaVehi;
+    private javax.swing.JTextArea PantallaVehiculo;
     private javax.swing.JTextField Tarifa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -440,5 +621,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }

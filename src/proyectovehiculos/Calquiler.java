@@ -18,7 +18,7 @@ public class Calquiler {
    
    
 
-   public Calquiler(Cclientes cliente, Cvehiculo vehiculo, int totalDiaslquilado, int diaAlquiler, int mesAlquiler, int añoAlquiler  ){                    /*    Debes recibir por parámetros aquí    */
+   public Calquiler(Cclientes cliente, Cvehiculo vehiculo, int dias){                    /*    Debes recibir por parámetros aquí    */
       /* this.cliente = new Cclientes();
        this.vehiculo = new Cvehiculo();   /* Cuando recibes un valor pro parámetro a través del constructor significa que ya esos valores están definidos antes
        de crear la instancia de la clase en cuestión entonces no es necesario incializar en 0, null o "" */
@@ -27,8 +27,11 @@ public class Calquiler {
        this.totalDiasalquilado = 0;*/
       this.cliente = cliente;
       this.vehiculo = vehiculo;
+      this.totalDiasalquilado = dias;
 
        }
+
+  
 
     public Cclientes getCliente() {
         return cliente;

@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyectovehiculos;
-  // import java.util.Calendar;    HERE!!! te recomiento usar esa librería para capturar la fecha y hora actual 
+  /*HERE!!! te recomiento usar esa librería para capturar la fecha y hora actual 
   // para el momento del alquiler que debe usar f y h actuales, consulta como obtener valores con esta librería en 
   // http://puntocomnoesunlenguaje.blogspot.com/2013/11/obtener-fecha-actual-en-java.html 
 /**
  *
  * @author Usuario
  */
+
+
 public class EmpresaAlquiler {
 
     private String cif;
@@ -35,13 +37,19 @@ public class EmpresaAlquiler {
 
     }
 
-    public Cclientes[] getClientes() {
-        return clientes;
+    public Cclientes getClientes(String nif) {
+        for (int i = 0; i < this.getTotalcliente(); i++) {
+            if (this.clientes[i].getNif().equals(nif)) {
+                return clientes[i];
+            }
+            
+        }
+        return null;
 
     }
 
-    public void setClientes(Cclientes cliente) {
-        this.clientes[this.totalcliente] = cliente;
+    public void setClientes(Cclientes[] cliente) {
+        this.clientes = cliente;
     }
 
     public int getTotalcliente() {
@@ -52,14 +60,24 @@ public class EmpresaAlquiler {
         this.totalcliente = totalcliente;
     }
 
-    public Cvehiculo[] getVehiculos() {
+    public Cvehiculo getVehiculos(String matricula) {
+        for (int i = 0; i < this.getTotalvehiculo(); i++) {
+            if (this.vehiculos[i].getMatricula().equals(matricula)) {
+                return vehiculos[i];
+                
+            }
+            
+        }
 
-        return vehiculos;
+        return null;
 
     }
 
     public void setVehiculos(Cvehiculo vehiculo) {
         this.vehiculos[this.totalvehiculo] = vehiculo;
+        this.totalvehiculo++;
+        
+        
     }
 
     public int getTotalvehiculo() {
@@ -110,10 +128,10 @@ public class EmpresaAlquiler {
         this.nombre = nombre;
     }
 
-    /*public void registrarCliente(Cclientes cliente) {
-        this.cliente[this.totalcliente] = cliente;
-        this.totalcliente++;
-    }*/
+    public void registrarCliente(Cclientes cliente) {
+        this.clientes[this.totalcliente] = cliente;
+        this.totalcliente ++;
+    }
 
  /*public void registrarVehiculo(Cvehiculo vehiculo) {
         this.vehiculo[this.totalvehiculo] = vehiculo;
@@ -121,7 +139,7 @@ public class EmpresaAlquiler {
     }*/
     public String mostrarCliente() {
         String list = "";
-        for (int i = 0; this.totalcliente < 10; i++) {
+        for (int i = 0; i < this.getTotalcliente(); i++) {
             list = "Nif Cliente: " + this.clientes[i].getNif() + " \n"
                     + "Nombre del Cliente: " + this.clientes[i].getNombre() + "\n"
                     + "Apellidos del cliente: " + this.clientes[i].getApellido();
@@ -142,8 +160,8 @@ public class EmpresaAlquiler {
     }
 
     public void alquilarVehiculo(String matricula, String nif, int dias) {
-        Cclientes cliente = this.buscarcli(nif);
-        Cvehiculo vehiculo = this.buscarvehiculo(matricula);
+        Cclientes cliente = this.getClientes(nif);
+        Cvehiculo vehiculo = this.getVehiculos(matricula);
         if (vehiculo.getDisponible()) {
             vehiculo.setDisponible(false);
        
@@ -164,8 +182,20 @@ public class EmpresaAlquiler {
 
     }
     
+    public String mostrarAlquiler(){
+        String lis = "";
+        for (int i = 0; i < this.getTotalalquileres(); i++) {
+            lis = "Cliente de alquiler:" +this.alquileres[i].getCliente().nombre + "\n" + 
+                  "Vehiculo alquilado:" +this.alquileres[i].getVehiculo().matricula + "\n" + 
+                  "Dias alquilado:" +this.alquileres[i].getDiaAlquiler();
+            
+        }
+        
+        return lis;
+    }
+    
 
-    public Cclientes buscarcli(String nif) {
+   /* public Cclientes buscarcli(String nif) {
         for (int i = 0; i < this.totalcliente; i++) {
             if (this.clientes[i].getNif().equals(nif)) {
                 return this.clientes[i];
@@ -173,9 +203,9 @@ public class EmpresaAlquiler {
 
         }
         return null;
-    }
+    }*/
 
-    public Cvehiculo buscarvehiculo(String matricula) {
+   /* public Cvehiculo buscarvehiculo(String matricula) {
         for (int i = 0; i < this.totalvehiculo; i++) {
             if (this.vehiculos[i].getMatricula().equals(matricula)) {
                 return this.vehiculos[i];
@@ -183,6 +213,13 @@ public class EmpresaAlquiler {
         }
         return null;
 
+    }*/
+    
+    public void recibirvehiculo(String matricula){
+        Cvehiculo vehiculo = this.getVehiculos(matricula);
+        if (vehiculo != null) {
+            vehiculo.setDisponible(true); 
+        }
     }
 
 }
