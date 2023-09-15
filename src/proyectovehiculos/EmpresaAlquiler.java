@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyectovehiculos;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
   /*HERE!!! te recomiento usar esa librería para capturar la fecha y hora actual 
   // para el momento del alquiler que debe usar f y h actuales, consulta como obtener valores con esta librería en 
   // http://puntocomnoesunlenguaje.blogspot.com/2013/11/obtener-fecha-actual-en-java.html 
@@ -23,6 +27,7 @@ public class EmpresaAlquiler {
     private int totalvehiculo;
     private Calquiler[] alquileres;
     private int totalalquileres;
+   
 
     public EmpresaAlquiler(String cif, String pagina, String nombre) {
         this.cif = cif;
@@ -34,6 +39,7 @@ public class EmpresaAlquiler {
         this.totalvehiculo = 0;
         this.alquileres = new Calquiler[100];
         this.totalalquileres = 0;
+        
 
     }
 
@@ -73,9 +79,9 @@ public class EmpresaAlquiler {
 
     }
 
-    public void setVehiculos(Cvehiculo vehiculo) {
+    public void setVehiculos( Cvehiculo vehiculo) {
         this.vehiculos[this.totalvehiculo] = vehiculo;
-        this.totalvehiculo++;
+        this.totalvehiculo ++;
         
         
     }
@@ -92,8 +98,9 @@ public class EmpresaAlquiler {
         return alquileres;
     }
 
-    public void setAlquileres(Calquiler[] alquileres) {
-        this.alquileres = alquileres;
+    public void setAlquileres(Calquiler alquileres) {
+        this.alquileres[this.totalalquileres] = alquileres;
+        this.totalalquileres ++;
     }
 
     public int getTotalalquileres() {
@@ -140,9 +147,9 @@ public class EmpresaAlquiler {
     public String mostrarCliente() {
         String list = "";
         for (int i = 0; i < this.getTotalcliente(); i++) {
-            list = "Nif Cliente: " + this.clientes[i].getNif() + " \n"
+            list += "Nif Cliente: " + this.clientes[i].getNif() + " \n"
                     + "Nombre del Cliente: " + this.clientes[i].getNombre() + "\n"
-                    + "Apellidos del cliente: " + this.clientes[i].getApellido();
+                    + "Apellidos del cliente: " + this.clientes[i].getApellido()+ "\n";
 
         }
         return list;
@@ -151,17 +158,29 @@ public class EmpresaAlquiler {
     public String mostrarVehiculos() {
         String list = "";
         for (int i = 0; i < this.getTotalvehiculo(); i++) {
-            list = "Matricula del vehiculo; " + this.vehiculos[i].getMatricula() + "\n"
+            list += "Matricula del vehiculo; " + this.vehiculos[i].getMatricula() + "\n"
                     + "Modelo del vehiculo" + this.vehiculos[i].getModelo() + "\n"
                     + "Tarifa del Vehiculo" + this.vehiculos[i].getTarifa() + "\n"
-                    + "Disponobilidad del Vehiculo:" + this.vehiculos[i].getDisponible();
+                    + "Disponobilidad del Vehiculo:" + this.vehiculos[i].getDisponible() +"\n";
         }
         return list;
     }
 
     public void alquilarVehiculo(String matricula, String nif, int dias) {
+        
+        Calendar fecha = new GregorianCalendar();
+        int DiaHoy = fecha.get(Calendar.DAY_OF_MONTH);
+        int MesHoy = fecha.get(Calendar.MONTH);
+        int AñoHoy = fecha.get(Calendar.YEAR);
+        
+                
+        
+       
+        
         Cclientes cliente = this.getClientes(nif);
         Cvehiculo vehiculo = this.getVehiculos(matricula);
+        
+        
         if (vehiculo.getDisponible()) {
             vehiculo.setDisponible(false);
        
@@ -175,7 +194,7 @@ public class EmpresaAlquiler {
                 */
                 /*this.totalalquileres++;*/
 
-            this.alquileres[this.totalalquileres] = new Calquiler (cliente, vehiculo, dias);
+            this.alquileres[this.totalalquileres] = new Calquiler (cliente, vehiculo, dias, MesHoy, AñoHoy, DiaHoy);
             this.totalalquileres++;
 
         }
@@ -185,10 +204,12 @@ public class EmpresaAlquiler {
     public String mostrarAlquiler(){
         String lis = "";
         for (int i = 0; i < this.getTotalalquileres(); i++) {
-            lis = "Cliente de alquiler:" +this.alquileres[i].getCliente().nombre + "\n" + 
+            lis += "Cliente de alquiler:" +this.alquileres[i].getCliente().nombre + "\n" + 
                   "Vehiculo alquilado:" +this.alquileres[i].getVehiculo().matricula + "\n" + 
-                  "Dias alquilado:" +this.alquileres[i].getDiaAlquiler();
-            
+                  "Dias alquilado:" +this.alquileres[i].getTotalDiasalquilado() + " \n" +
+                   "Dia del alquiler: " + this.alquileres[i].getDiaAlquiler() + "/" + this.alquileres[i].getMesAlquiler() 
+                    + "/" + this.alquileres[i].getAñoAlquiler();
+                    
         }
         
         return lis;
@@ -221,5 +242,4 @@ public class EmpresaAlquiler {
             vehiculo.setDisponible(true); 
         }
     }
-
 }

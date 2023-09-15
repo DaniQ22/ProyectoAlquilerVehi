@@ -532,15 +532,19 @@ public class Registro extends javax.swing.JFrame {
      
         
         String ni = this.NCli.getText();
+        this.NCli.setText("");
         
         
         
         String ma = this.Mvehi.getText();
-       
+       this.Mvehi.setText("");
         
         int di = Integer.parseInt(this.Dalqui.getText());
+        this.Dalqui.setText("");
         
         easydrive.alquilarVehiculo(ma, ni, di);
+        JOptionPane.showMessageDialog(null, "El alquiler se ha registradi exitosamente");
+    
         
         
         
