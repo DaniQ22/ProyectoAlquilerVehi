@@ -17,18 +17,15 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
-        
-        
-    }
-    
-    EmpresaAlquiler easydrive = new EmpresaAlquiler ("A-20-2022", "Easy Drive", "www.EasyDrive.com");
 
-  
+    }
+
+    EmpresaAlquiler easydrive = new EmpresaAlquiler();
+
     /* Aquí no es necesario usar contadores dado que los tamaños de los arreglos están predefinidos y no creados por el usuario
     en la clase principal te darás cuenta que ta tienen tamamños de 100, 50, que es la capacidad el negocio y que al ir insertando empieza
     por la posici+on cero inicializada */
-    /* también te recuereo que al tratarse de vectores de objetos debes hcaer instancias de ellos en los botones */
-
+ /* también te recuereo que al tratarse de vectores de objetos debes hcaer instancias de ellos en los botones */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -459,12 +456,11 @@ public class Registro extends javax.swing.JFrame {
         String apelli = CajaApellido.getText();
         clie.setApellido(apelli);
         this.CajaApellido.setText("");
-        
+
         easydrive.registrarCliente(clie);
 
         JOptionPane.showMessageDialog(null, "El Cliente se ha registrado correctamente");
 
-        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -490,34 +486,34 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Cvehiculo vehi = new Cvehiculo();
-        
+
         String matri = Matricula.getText();
         vehi.setMatricula(matri);
         this.Matricula.setText("");
-        
+
         String mode = Modelo.getText();
         vehi.setModelo(mode);
-        this.Modelo.setText(""); 
-        
+        this.Modelo.setText("");
+
         String co = Color.getText();
         vehi.setColor(co);
         this.Color.setText("");
-        
+
         String marc = Marca.getText();
         vehi.setMarca(marc);
         this.Marca.setText("");
-        
+
         double tarif = Integer.parseInt(Tarifa.getText());
         vehi.setTarifa(tarif);
         this.Tarifa.setText("");
-        
+
         easydrive.setVehiculos(vehi);
         JOptionPane.showMessageDialog(null, "El vehiculo ha sido registrado correctamente");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        this.PantallaCliente.setText(""+easydrive.mostrarCliente());
+        this.PantallaCliente.setText("" + easydrive.mostrarCliente());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void MvehiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MvehiActionPerformed
@@ -525,29 +521,36 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_MvehiActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.PantallaAlquiler.setText(""+easydrive.mostrarAlquiler());
+        this.PantallaAlquiler.setText("" + easydrive.mostrarAlquiler());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     
-        
-        String ni = this.NCli.getText();
-        this.NCli.setText("");
-        
-        
-        
-        String ma = this.Mvehi.getText();
-       this.Mvehi.setText("");
-        
+        Cclientes cliente = easydrive.buscarcli(this.NCli.getText());
+        Cvehiculo vehiculo = easydrive.buscarvehiculo(this.Mvehi.getText());
         int di = Integer.parseInt(this.Dalqui.getText());
-        this.Dalqui.setText("");
+        String nif = "";
+        String ma = "";
+        if (cliente != null && vehiculo != null) {
+            nif = this.NCli.getText();
+            this.NCli.setText("");
+            ma = this.Mvehi.getText();
+            this.Mvehi.setText("");
+            easydrive.alquilarVehiculo(ma, nif, di);
+            this.Dalqui.setText("");
+            JOptionPane.showMessageDialog(null, "El alquiler se ha registradi exitosamente");
+            
+        } else if (cliente == null || vehiculo == null){
+            JOptionPane.showMessageDialog(null, "El cliente o auto no existe, por favor verifique");
+        }
+
+       
+
         
-        easydrive.alquilarVehiculo(ma, ni, di);
-        JOptionPane.showMessageDialog(null, "El alquiler se ha registradi exitosamente");
-    
         
+
         
-        
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
